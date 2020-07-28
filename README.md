@@ -19,3 +19,7 @@ The goal of this tutorial is to build an API for a Hacker News clone. [Tutorial 
 - Extending the schema definition
 - Implement resolver functions
 - The query resolution process ( [article](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e#9d03) to learn more about )
+
+## A Simple Mutation
+
+- Extending the schema definition
