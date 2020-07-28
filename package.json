@@ -1,0 +1,23 @@
+{
+  "name": "graphql-node-tutorial",
+  "version": "1.0.0",
+  "description": "The goal of this tutorial is to build an API for a Hacker News clone.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EymericS/graphql-node-tutorial.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EymericS/graphql-node-tutorial/issues"
+  },
+  "homepage": "https://github.com/EymericS/graphql-node-tutorial#readme",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
+}
