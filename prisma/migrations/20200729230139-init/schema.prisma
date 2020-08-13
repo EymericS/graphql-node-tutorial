@@ -1,0 +1,24 @@
+//
+// Data source : tell to prisma witch of DB connection we will use
+//
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+//
+//  Generator : some generation config
+//
+generator client {
+  provider = "prisma-client-js"
+}
+
+//
+//  Data model : definition of some models
+//
+model Link {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  description String
+  url         String
+}

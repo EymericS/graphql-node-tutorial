@@ -1,5 +1,33 @@
 const { GraphQLServer } = require('graphql-yoga')
 
+const { PrismaClient } = require('@prisma/client') // Need to be generated
+
+/*
+ * Implementation of Prisma
+ */
+const prisma = new PrismaClient()
+
+// function to send queries to the database by prisma
+async function main() {
+    const newLink = await prisma.link.create({
+        data: {
+            description: 'Fullstack tutorial for GraphQL',
+            url: 'www.howtographpl.com',
+        },
+    })
+    const allLink = await prisma.link.findMany()
+
+    console.log(allLink)
+}
+
+main()
+    .catch( e => {
+        throw e
+    })
+    .finally( async () => {
+        await prisma.disconnect()
+    })
+
 // Dummy data
 let links = [{
     id: 'link-0',
