@@ -70,8 +70,19 @@ The goal of this tutorial is to build an API for a Hacker News clone. [Tutorial 
 ```shell script
   npx prisma generate --schema=./prisma/prisma.schema
 ```
-- Summary of your workflow
+* Summary of your workflow
   1. Manually adjust the Prisma data model.
   2. Migrate the database using the `prisma migrate` CLI commands.
   3. (Re-)generate Prisma Client
   4. Use Prisma Client in application code to access database.
+  
+## Connecting The Server and Database with Prisma Client
+
+- Wiring up your GraphQL schema with Prisma Client
+  - The GraphQL `context` resolver argument
+- Updating the resolver functions to use Prisma Client
+- Testing the new implementation
+- Exploring your data in Prisma Studio
+```shell script
+  npx prisma studio --experimental
+```

@@ -2,31 +2,7 @@ const { GraphQLServer } = require('graphql-yoga')
 
 const { PrismaClient } = require('@prisma/client') // Need to be generated
 
-/*
- * Implementation of Prisma
- */
 const prisma = new PrismaClient()
-
-// function to send queries to the database by prisma
-async function main() {
-    const newLink = await prisma.link.create({
-        data: {
-            description: 'Fullstack tutorial for GraphQL',
-            url: 'www.howtographpl.com',
-        },
-    })
-    const allLink = await prisma.link.findMany()
-
-    console.log(allLink)
-}
-
-main()
-    .catch( e => {
-        throw e
-    })
-    .finally( async () => {
-        await prisma.disconnect()
-    })
 
 // Dummy data
 let links = [{
@@ -43,18 +19,21 @@ let idCount = links.length
 const resolvers = {
     Query: {
         info: () => `This is the API of a Hackernews Clone`,
-        feed: () => links,
+        feed: async (parent, args, context, info) => {
+            return context.prisma.link.findMany()
+        },
     },
     Mutation: {
-        post: (parent, args) => {
-            const link = {
-                id: `link-${idCount++}`,
-                description: args.description,
-                url: args.url,
-            }
-            links.push(link)
-            return link
-        }
+        post: (parent, args, context) => {
+            const newLink = context.prisma.link.create({
+                data: {
+                    description: args.description,
+                    url: args.url,
+                },
+            })
+
+            return newLink
+        },
     },
 }
 
@@ -64,5 +43,8 @@ const resolvers = {
 const server = new GraphQLServer({
     typeDefs: './src/schema.graphql', // Defines GraphQL schema
     resolvers,
+    context: {
+        prisma, // save an instance of PrismaClien in context
+    }
 })
 server.start(() => console.log(`Server is running on http://localhost:4000`))
