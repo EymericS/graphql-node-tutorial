@@ -63,7 +63,7 @@ The goal of this tutorial is to build an API for a Hacker News clone. [Tutorial 
 ```
 - Getting Started with SQLite
 ```shell script
-  npx prisma migrate save --experimental --schema=./prisma/prisma.schema
+  npx prisma migrate save --name "migration-name" --experimental --schema=./prisma/prisma.schema
   npx prisma migrate up --experimental --schema=./prisma/prisma.schema
 ```
 - Generating Prisma Client
@@ -86,3 +86,24 @@ The goal of this tutorial is to build an API for a Hacker News clone. [Tutorial 
 ```shell script
   npx prisma studio --experimental
 ```
+
+## Authentication
+
+- Adding a `User` model
+- Understanding relation fields
+- Updating Prisma Client
+- Implementing the resolver functions
+```shell script
+mkdir src/resolvers
+touch src/resolvers/Query.js
+touch src/resolvers/Mutation.js
+touch src/resolvers/User.js
+touch src/resolvers/Link.js
+```
+```shell script
+npm install jsonwebtoken bcryptjs
+touch src/utils.js
+touch src/APP_SECRET.js
+```
+- Requiring authentication for the post mutation
+- Testing the authentication flow
