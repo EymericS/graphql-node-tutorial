@@ -118,3 +118,11 @@ touch src/APP_SECRET.js
 - Testing subscriptions
 - Adding a voting feature
 
+## Filtering, Pagination & Sorting
+
+- Filtering
+- Pagination
+  - **Limit-Offset:** Request a specific chunk of the list
+  - **Cursor-based:** Every element in the list is associated with a unique ID (the cursor).
+- Sorting
+- Returning the total amount of `Link` elements
