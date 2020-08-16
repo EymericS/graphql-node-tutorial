@@ -1,14 +1,23 @@
 const { GraphQLServer } = require('graphql-yoga')
+const { PubSub } = require('graphql-yoga')
+const { PrismaClient } = require('@prisma/client') // Need to be generated
+
 const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
+const Subscription = require('./resolvers/Subscription')
 const User = require('./resolvers/User')
 const Link = require('./resolvers/Link')
+const Vote = require('./resolvers/Votes')
 
 /*
  * Prisma implementation
  */
-const { PrismaClient } = require('@prisma/client') // Need to be generated
 const prisma = new PrismaClient()
+
+/*
+ * PubSub implementation ( graphql Subscribtion )
+ */
+const pubsub = new PubSub()
 
 /*
  * Implementation of the GraphQL schema
@@ -16,8 +25,10 @@ const prisma = new PrismaClient()
 const resolvers = {
     Query,
     Mutation,
+    Subscription,
     User,
     Link,
+    Vote,
 }
 
 /*
@@ -30,8 +41,9 @@ const server = new GraphQLServer({
         return {
             ...request, // attach the HTTP request to allow resolvers to read the Authorization header to perform the requested operation.
             prisma, // save an instance of PrismaClien in context
+            pubsub,
         }
-    }
+    },
 })
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))

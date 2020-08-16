@@ -107,3 +107,14 @@ touch src/APP_SECRET.js
 ```
 - Requiring authentication for the post mutation
 - Testing the authentication flow
+
+## Realtime GraphQL Subscriptions
+
+- What are GraphQL subscriptions ?
+- Implementing GraphQL subscriptions
+- Setting up `PubSub`
+- Subscribing to new `Link` elements
+- Adding subscriptions to your resolvers
+- Testing subscriptions
+- Adding a voting feature
+
